@@ -16,7 +16,14 @@ jobs:
           password: ${{secrets.PASSWORD}}
           port: ${{secrets.PORT}}
           script: |
-            whoami
-            ls -al
+            docker login -u ${{secrets.DOCKER_ID}} -p ${{secrets.DOCKER_PW}}
+            
+            docker pull ${{secrets.DOCKER_ID}}/${{secrets.DOCKER_IMAGE}}
+            
+            docker stop ${{secrets.DOCKER_IMAGE}}
+            
+            docker rm ${{secrets.DOCKER_IMAGE}}
+            
+            docker run -d -p 8080:8080 --name ${{secrets.DOCKER_IMAGE}} ${{secrets.DOCKER_ID}}/${{secrets.DOCKER_IMAGE}
           
     
