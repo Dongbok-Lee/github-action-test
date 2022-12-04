@@ -11,7 +11,7 @@ permissions:
 
 jobs:
  deploy:
-    name: Deploy To Server
+    name: Deploy To Server 
     runs-on: ubuntu-latest
     steps: 
       - name: Test ssh-action
